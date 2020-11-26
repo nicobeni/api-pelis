@@ -1,0 +1,27 @@
+﻿@model Tuspelis.Models.MasVotada
+
+@{
+    ViewData["Title"] = "index";
+}
+
+<h1>Las mas votadas</h1>
+
+
+<div class="row row-cols-1 row-cols-md-3">
+    @foreach (var item1 in Model.results)
+    {
+        var imagePath = @"https://image.tmdb.org/t/p/w500" + @item1.poster_path;
+        <div class="col-3">
+
+            <div class="card h-100">
+                <img src=@imagePath class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@item1.title</h5>
+                    <p class="card-text"> @Html.DisplayFor(modelItem => item1.original_language)</p>
+                    <p class="card-text"> @Html.DisplayFor(modelItem => item1.release_date)</p>
+                    <p class="card-text">  <a asp-controller="PeliculaDetalle" asp-action="ver" asp-route-id="@item1.id"> @Html.DisplayFor(modelItem => item1.id)</a> </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
